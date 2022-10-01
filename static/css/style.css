@@ -1,0 +1,14 @@
+html, body {
+    height: 100%;
+}
+body {
+    background-color: rgb(30,77,144) !important;
+}
+
+.secondary_color {
+    background-color: rgb(31, 76, 145) !important;
+}
+
+.font-weight-500 {
+    font-weight: 500;
+}
