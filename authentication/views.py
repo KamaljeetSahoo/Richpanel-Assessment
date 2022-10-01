@@ -3,6 +3,7 @@ from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from subscription.models import UserSubscription
 
 # Create your views here.
 def registerView(request):
@@ -28,6 +29,8 @@ def registerView(request):
             else:
                 new_user = User.objects.create_user(username=username, email=email, password=password)
                 new_user.save()
+                subscription_profile = UserSubscription(user=new_user)
+                subscription_profile.save()
                 return redirect("login")
         else:
             return render(request, 'authentication/register.html')
