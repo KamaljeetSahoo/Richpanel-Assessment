@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def registerView(request):
@@ -34,4 +35,21 @@ def registerView(request):
         return redirect("billing")
 
 def loginView(request):
-    return render(request, 'authentication/login.html')
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            email = request.POST['email']
+            password = request.POST['password']
+            user = None
+            if User.objects.filter(email=email):
+                user = authenticate(request, username=User.objects.get(email=email).username, password=password)
+            if user is not None:
+                return redirect("billing")
+            else:
+                context = {
+                    'errors': 'Invalid Credentials',
+                }
+                return render(request, 'authentication/login.html', context=context)
+        else:
+            return render(request, 'authentication/login.html')
+    else:
+        return redirect("billing")
