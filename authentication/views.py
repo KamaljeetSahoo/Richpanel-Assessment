@@ -42,8 +42,14 @@ def loginView(request):
             user = None
             if User.objects.filter(email=email):
                 user = authenticate(request, username=User.objects.get(email=email).username, password=password)
-            if user is not None:
-                return redirect("billing")
+                if user is not None:
+                    login(request, user)
+                    return redirect("billing")
+                else:
+                    context = {
+                        'errors': 'Invalid Credentials',
+                    }
+                    return render(request, 'authentication/login.html', context=context)
             else:
                 context = {
                     'errors': 'Invalid Credentials',
