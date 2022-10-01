@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class PlanType(models.Model):
@@ -35,3 +36,14 @@ class Plan(models.Model):
 
     def __str__(self) -> str:
         return str(self.plan_type)+'_'+str(self.video_quality)
+    
+class UserSubscription(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    subscribed = models.BooleanField(default=False)
+    plan = models.ForeignKey(Plan, null=True, blank=True, on_delete=models.SET_NULL)
+    cancelled = models.BooleanField(default=False)
+    subscription_date = models.DateField(null=True, blank=True)
+    expiration_date = models.DateField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return str(self.user)
