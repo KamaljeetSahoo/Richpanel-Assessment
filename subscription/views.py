@@ -56,6 +56,7 @@ def paymentPage(request, planType, monthly):
         context = {
             'client_secret': intent.client_secret,
             'amount': amount,
+            'price': amount//100,
             'planType': planType,
             'monthly': monthly,
         }
