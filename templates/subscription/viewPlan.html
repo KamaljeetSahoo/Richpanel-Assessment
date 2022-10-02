@@ -2,9 +2,31 @@
 {% block body_content %}
 <div class="container h-100">
     <div class="row my-auto h-100">
-        <div class="card my-auto mx-auto p-5">
-            <h4 class="text-center mb-5">Current Plan</h4>
-            
+        <div class="card my-auto mx-auto p-5" style="border-radius: 20px;">
+            <div class="container d-flex justify-content-between">
+                <span>
+                    <span class="mb-5">Current Plan Details</span>
+                    <span class="badge bg-success">Primary</span>
+                </span>
+                <span>
+                    <a href="/cancelSub"><button class="btn btn-danger">Cancel</button></a>
+                </span>
+            </div>
+            <div class="p-5">
+                {{subscription.plan.plan_type.name}}
+                {% for device in subscription.plan.devices.all %}
+                    {{device}}
+                {% endfor %}
+            </div>  
+            <div>
+                {{monthly}}
+                {% if monthly == "monthly" %}
+                    {{subscription.plan.monthly_price}}/mo
+                {% else %}
+                    {{subscription.plan.yearly_price}}/yr
+                {% endif %}
+                ₹
+            </div>
         </div>
     </div>
  </div>
