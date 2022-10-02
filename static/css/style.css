@@ -9,6 +9,15 @@ body {
     background-color: rgb(31, 76, 145) !important;
 }
 
+.billing_secondary_color {
+    background-color: rgb(121, 147, 189) !important;
+}
+
+.secondary_font_color {
+    color: rgb(31, 76, 145) !important;
+    font-weight: 500;
+}
+
 .font-weight-500 {
     font-weight: 500;
 }
