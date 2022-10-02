@@ -6,7 +6,7 @@
             {% if subscription.cancelled %}
             <div class="container d-flex justify-content-between">
                 <span>
-                    <span class="mb-5">Current Plan Details</span>
+                    <span class="mb-5 display-6 font-weight-bold">Current Plan Details</span>
                     <span class="badge bg-danger">CANCELLED</span>
                 </span>
             </div>
@@ -30,11 +30,24 @@
             <div>
                 {{monthly}}
                 {% if monthly == "monthly" %}
-                    {{subscription.plan.monthly_price}}/mo
+                    ₹{{subscription.plan.monthly_price}}/mo
                 {% else %}
-                    {{subscription.plan.yearly_price}}/yr
+                    ₹{{subscription.plan.yearly_price}}/yr
+                {% endif %}               
+            </div>
+            <div>
+                {% if subscription.cancelled %}
+                    <a href="/"><button>Choose Plan</button></a>
+                {% else %}
+                    <a href="/"><button>Change Plan</button></a>
                 {% endif %}
-                ₹
+            </div>
+            <div>
+                {% if subscription.cancelled %}
+                    Your Subscription was cancelled and you will loose access on {{subscription.expiration_date}}
+                {% else %}
+                    Your subscription has started on {{subscription.subscription_date}} and will renew on {{subscription.expiration_date}}
+                {% endif %}
             </div>
         </div>
     </div>
