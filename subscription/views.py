@@ -105,3 +105,11 @@ def subscriptionPage(request):
         else:
             return redirect("billing")
     return redirect('login')
+
+def cancelSubscription(request):
+    if request.user.is_authenticated:
+        sub = request.user.usersubscription
+        sub.cancelled = True
+        sub.save()
+        return redirect("currentPlan")
+    return redirect("login")
