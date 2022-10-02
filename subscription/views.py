@@ -8,15 +8,18 @@ stripe.api_key = config('STRIPE_API_KEY')
 # Create your views here.
 def billingView(request):
     if request.user.is_authenticated:
+        url = request.get_full_path()
         plans = Plan.objects.all()
         plan_types = []
         prices =[]
+        yearlyPrices = []
         video_qualities = []
         resolutions = []
         devices = []
         for plan in plans:
             plan_types.append(str(plan.plan_type))
             prices.append(plan.monthly_price)
+            yearlyPrices.append(plan.yearly_price)
             video_qualities.append(str(plan.video_quality))
             resolutions.append(str(plan.resolution))
             d = []
@@ -30,24 +33,31 @@ def billingView(request):
             'video_qualities': video_qualities,
             'resolutions': resolutions,
             'devices': devices,
+            'yearlyPrices': yearlyPrices,
         }
+        if str(url) == "/yearly/":
+            return render(request, 'subscription/billingYearly.html', context=context)
         return render(request, 'subscription/billing.html', context=context)
     return redirect("login")
 
-def paymentPage(request, planType):
+def paymentPage(request, planType, monthly):
     if request.user.is_authenticated:
         selected_plan = PlanType.objects.get(name=planType)
         plan = Plan.objects.get(plan_type=selected_plan)
+        if monthly == 'monthly':
+            amount = plan.monthly_price*100
+        else:
+            amount = plan.yearly_price*100
         intent = stripe.PaymentIntent.create(
-            amount=plan.monthly_price*100,
+            amount=amount,
             currency='inr',
             metadata={'integration_check': 'accept_a_payment'},
         )
         context = {
             'client_secret': intent.client_secret,
-            'amount': plan.monthly_price*100,
+            'amount': amount,
             'planType': planType,
-            'monthly': 'monthly',
+            'monthly': monthly,
         }
         return render(request, 'subscription/paymentPage.html', context=context)
     return redirect('login')
