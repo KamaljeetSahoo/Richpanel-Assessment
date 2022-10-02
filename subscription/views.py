@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Plan
+from .models import Plan, PlanType
+from decouple import config
+import stripe
+stripe.api_key = config('STRIPE_API_KEY')
 
 # Create your views here.
 def billingView(request):
@@ -29,3 +32,31 @@ def billingView(request):
         }
         return render(request, 'subscription/billing.html', context=context)
     return redirect("login")
+
+def paymentPage(request, planType):
+    if request.user.is_authenticated:
+        selected_plan = PlanType.objects.get(name=planType)
+        plan = Plan.objects.get(plan_type=selected_plan)
+        intent = stripe.PaymentIntent.create(
+            amount=plan.monthly_price*100,
+            currency='inr',
+            metadata={'integration_check': 'accept_a_payment'},
+        )
+        context = {
+            'client_secret': intent.client_secret,
+            'amount': plan.monthly_price*100,
+        }
+        return render(request, 'subscription/paymentPage.html', context=context)
+    return redirect('login')
+
+
+def subscriptionPage(request):
+    if request.user.is_authenticated:
+        if request.user.usersubscription:
+            context = {
+                'subscription': request.user.usersubscription,
+            }
+            return render(request, 'subscription/viewPlan.html', context=context)
+        else:
+            return redirect("billing")
+    return redirect('login')

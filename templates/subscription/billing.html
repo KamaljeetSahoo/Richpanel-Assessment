@@ -86,6 +86,11 @@
                     </div>
                 {% endfor %}
             </div>
+            <div class="row mt-5">
+                <div class="col text-center">
+                    <button class="btn w-25 text-white" id="nextButton" style="background-color: rgb(31, 76, 145)">Next</button>
+                </div>
+            </div>
         </div>
     </div>
  </div>
@@ -125,6 +130,7 @@ $(document).ready(function(){
     container[0].style.backgroundColor = "rgb(121, 147, 189)";
     var container = document.getElementsByClassName('ptype4');
     container[0].style.backgroundColor = "rgb(121, 147, 189)";
+    console.log(selected)
   }
   function changeColor(num){
     let containers = document.getElementsByClassName('text'+num)
@@ -135,44 +141,47 @@ $(document).ready(function(){
     container[0].style.backgroundColor = "rgb(31, 76, 145)";
   }
   $('.text1').click(function(){
-    var selected = "Mobile"
+    selected = "Mobile"
     resetColor();
     changeColor(1);
   })
   $('.text2').click(function(){
-    var selected = "Basic"
+    selected = "Basic"
     resetColor();
     changeColor(2);
   })
   $('.text3').click(function(){
-    var selected = "Standard"
+    selected = "Standard"
     resetColor();
     changeColor(3);
   })
   $('.text4').click(function(){
-    var selected = "Premium"
+    selected = "Premium"
     resetColor();
     changeColor(4);
   })
   $('.ptype1').click(function(){
-    var selected = "Mobile"
+    selected = "Mobile"
     resetColor();
     changeColor(1);
   })
   $('.ptype2').click(function(){
-    var selected = "Basic"
+    selected = "Basic"
     resetColor();
     changeColor(2);
   })
   $('.ptype3').click(function(){
-    var selected = "Standard"
+    selected = "Standard"
     resetColor();
     changeColor(3);
   })
   $('.ptype4').click(function(){
-    var selected = "Premium"
+    selected = "Premium"
     resetColor();
     changeColor(4);
+  })
+  $('#nextButton').click(function(){
+    window.location.href = '/paymentPage/'+selected+'/'
   })
 });
 </script>
