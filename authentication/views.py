@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from subscription.models import UserSubscription
 
 # Create your views here.
@@ -62,3 +62,9 @@ def loginView(request):
             return render(request, 'authentication/login.html')
     else:
         return redirect("billing")
+
+def logoutView(request):
+    if request.user.is_authenticated:
+        logout(request)
+        return redirect("login")
+    return redirect("login")
