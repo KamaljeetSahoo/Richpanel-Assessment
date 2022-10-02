@@ -2,47 +2,50 @@
 {% block body_content %}
 <div class="container h-100">
     <div class="row my-auto h-100">
-        <div class="card my-auto mx-auto p-5" style="border-radius: 20px;">
+        <div class="card my-auto mx-auto p-5 w-75" style="border-radius: 20px;">
             {% if subscription.cancelled %}
             <div class="container d-flex justify-content-between">
                 <span>
-                    <span class="mb-5 display-6 font-weight-bold">Current Plan Details</span>
+                    <span class="mb-5 display-6 font-weight-bold">Current Plan Details</span>&nbsp;
                     <span class="badge bg-danger">CANCELLED</span>
                 </span>
             </div>
             {% else %}
             <div class="container d-flex justify-content-between">
                 <span>
-                    <span class="mb-5">Current Plan Details</span>
-                    <span class="badge bg-success">ACTIVE</span>
+                    <span class="mb-5 display-6 font-weight-bold">Current Plan Details</span>
+                    <span class="badge bg-muted text-primary">ACTIVE</span>
                 </span>
                 <span>
                     <a href="/cancelSub"><button class="btn btn-danger">Cancel</button></a>
                 </span>
             </div>
             {% endif %}
-            <div class="p-5">
-                {{subscription.plan.plan_type.name}}
+            <div class="mt-4">
+                <p>{{subscription.plan.plan_type.name}}</p>
                 {% for device in subscription.plan.devices.all %}
-                    {{device}}
+                {% if forloop.last %}
+                    <span class="text-muted">{{device}}</span>
+                {% else %}
+                    <span class="text-muted">{{device}}</span>+
+                {% endif %}
                 {% endfor %}
             </div>  
             <div>
-                {{monthly}}
                 {% if monthly == "monthly" %}
-                    ₹{{subscription.plan.monthly_price}}/mo
+                    <h1>₹{{subscription.plan.monthly_price}}/mo</h1>
                 {% else %}
-                    ₹{{subscription.plan.yearly_price}}/yr
+                    <h1>₹{{subscription.plan.yearly_price}}/yr</h1>
                 {% endif %}               
             </div>
             <div>
                 {% if subscription.cancelled %}
-                    <a href="/"><button>Choose Plan</button></a>
+                    <a href="/"><button class="btn mt-4 shadow text-white secondary_font_color" >Choose Plan</button></a>
                 {% else %}
-                    <a href="/"><button>Change Plan</button></a>
+                    <a href="/"><button class="btn mt-4 shadow text-white secondary_font_color">Change Plan</button></a>
                 {% endif %}
             </div>
-            <div>
+            <div class="bg-light p-3 mt-4 font-weight-bold">
                 {% if subscription.cancelled %}
                     Your Subscription was cancelled and you will loose access on {{subscription.expiration_date}}
                 {% else %}
