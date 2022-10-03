@@ -74,7 +74,9 @@
     </div>
   </div>
 </div>
-{% endblock %} {% block custom_javascripts %}
+{% endblock %}
+{% block custom_javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   // This is your test publishable API key.
   var stripe = Stripe(
@@ -118,6 +120,14 @@
         if (result.error) {
           // Show error to your customer (for example, insufficient funds)
           console.log(result.error.message);
+          console.log(result);
+          swal({
+            title: "Payment Declined",
+            text: "Please try again",
+            icon: "error",
+            }).then(function() {
+                window.location.href = window.location.href;;
+            });
         } else {
           // The payment has been processed!
           if (result.paymentIntent.status === "succeeded") {
@@ -128,6 +138,7 @@
             // payment_intent.succeeded event that handles any business critical
             // post-payment actions.
           } else {
+            console.log(result)
             console.log("Payment Failed");
           }
         }
