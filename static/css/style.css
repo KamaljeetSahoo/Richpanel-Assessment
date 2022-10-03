@@ -1,115 +1,119 @@
-html, body {
-    height: 100%;
-}
+html,
 body {
-    background-color: rgb(30,77,144) !important;
+	height: 100%;
+}
+
+body {
+	background-color: rgb(30, 77, 144) !important;
 }
 
 .secondary_color {
-    background-color: rgb(31, 76, 145) !important;
+	background-color: rgb(31, 76, 145) !important;
 }
 
 .billing_secondary_color {
-    background-color: rgb(121, 147, 189) !important;
+	background-color: rgb(121, 147, 189) !important;
 }
 
 .secondary_font_color {
-    color: rgb(31, 76, 145) !important;
-    font-weight: 500;
+	color: rgb(31, 76, 145) !important;
+	font-weight: 500;
 }
 
 .font-weight-500 {
-    font-weight: 500;
+	font-weight: 500;
 }
-.cancelbtn{
-    font-weight: 500;
-    color:rgb(31, 76, 145) ;
 
+.cancelbtn {
+	font-weight: 500;
+	color: rgb(31, 76, 145);
+	padding-right: 0px;
 }
-.cardplan{
-    font-size:x-large;
-    font-weight: 600;
-}
-.bg-mine{
-    background-color:rgb(194, 220, 252);
-    font-weight: 500;
-    font-size: 15px;
-    color:rgb(31, 76, 145)!important;
-    
-}
-.cancel-badge{
-    color: rgb(229,121,118)!important;
-    background-color: rgb(244,204,202);
-}
-.hollowbtn{
-    width: 150px;
-    border-color: rgb(31, 76, 145);
-    border-width: 2px;
-    
-}
-.greytext{
-    color: rgb(86,85,85)!important;
-    
-}
-.lgrey{
-    color:rgb(174,174,175)!important;
-}
-.plan
-{
-    font-weight: 500;
-    margin-bottom: 2px;
 
+.cardplan {
+	font-size: x-large;
+	font-weight: 600;
 }
-.planstatement{
-    border-top-width: 4px;
-    background-color: rgb(214,214,214)!important;
-    padding-left: 10px;
-    color: rgb(86,85,85);
-    font-weight: 480;
+
+.bg-mine {
+	background-color: rgb(194, 220, 252);
+	font-weight: 500;
+	font-size: 15px;
+	color: rgb(31, 76, 145) !important;
 }
+
+.cancel-badge {
+	color: rgb(229, 121, 118) !important;
+	background-color: rgb(244, 204, 202);
+}
+
+.hollowbtn {
+	width: 150px;
+	border-color: rgb(31, 76, 145);
+	border-width: 2px;
+}
+
+.greytext {
+	color: rgb(86, 85, 85) !important;
+}
+
+.lgrey {
+	color: rgb(174, 174, 175) !important;
+}
+
+.plan {
+	font-weight: 500;
+	margin-bottom: 2px;
+}
+
+.planstatement {
+	border-top-width: 4px;
+	background-color: rgb(246, 246, 247) !important;
+	padding: 10px;
+	color: rgb(86, 85, 85);
+	font-weight: 480;
+	border-radius: 5px;
+}
+
 .StripeElement {
-    box-sizing: border-box;
-    
-    height: 40px;
-    
-    padding: 10px 12px;
-    
-    border: 1px solid transparent;
-    border-radius: 4px;
-    background-color: white;
-    
-    box-shadow: 0 1px 3px 0 #e6ebf1;
-    -webkit-transition: box-shadow 150ms ease;
-    transition: box-shadow 150ms ease;
-    }
-    
-    .StripeElement--focus {
-    box-shadow: 0 1px 3px 0 #cfd7df;
-    }
-    
-    .StripeElement--invalid {
-    border-color: #fa755a;
-    }
-    
-    .StripeElement--webkit-autofill {
-    background-color: #fefde5 !important;
-    }
+	box-sizing: border-box;
 
-.containervp{
-    padding-left: 0px;
-    padding-top: 15px;
+	height: 40px;
+
+	padding: 10px 12px;
+
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: white;
+
+	box-shadow: 0 1px 3px 0 #e6ebf1;
+	-webkit-transition: box-shadow 150ms ease;
+	transition: box-shadow 150ms ease;
 }
 
+.StripeElement--focus {
+	box-shadow: 0 1px 3px 0 #cfd7df;
+}
 
+.StripeElement--invalid {
+	border-color: #fa755a;
+}
 
+.StripeElement--webkit-autofill {
+	background-color: #fefde5 !important;
+}
 
-
+.containervp {
+	padding-left: 0px;
+	padding-top: 15px;
+	padding-right: 0px;
+}
 
 .arrow-down {
-    width: 0; 
-    height: 0; 
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    
-    border-top: 20px solid #f00!important;
+	width: 0;
+	height: 0;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+
+	border-top: 20px solid #f00 !important;
 }

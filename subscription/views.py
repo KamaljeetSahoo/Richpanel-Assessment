@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Plan, PlanType
 from decouple import config
 import stripe
+from .utils import process_date
 from datetime import datetime, timedelta
 stripe.api_key = config('STRIPE_API_KEY')
 
@@ -97,10 +98,15 @@ def subscriptionPage(request):
                 monthly = 'monthly'
             else:
                 monthly = 'yearly'
+            sub_date = process_date(request.user.usersubscription.subscription_date)
+            exp_date = process_date(request.user.usersubscription.expiration_date)
+        
             context = {
+                "sub_date":sub_date,
+                "exp_date":exp_date,
                 'subscription': request.user.usersubscription,
                 'time' : time,
-                'monthly': monthly,
+                'monthly': monthly,                
             }
             return render(request, 'subscription/viewPlan.html', context=context)
         else:

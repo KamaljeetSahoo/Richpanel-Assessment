@@ -1,55 +1,56 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% block body_content %}
 <div class="container h-100">
     <div class="row my-auto h-100">
-        <div class="card my-auto mx-auto p-5 w-75" style="border-radius: 20px;">
+        <div class="card my-auto mx-auto w-50 px-4" style="border-radius: 20px;">
             {% if subscription.cancelled %}
-            <div class="container d-flex justify-content-between">
+            <div class="container containervp d-flex justify-content-between ">
                 <span>
-                    <span class="mb-5 display-6 font-weight-bold">Current Plan Details</span>&nbsp;
-                    <span class="badge bg-danger">CANCELLED</span>
+                    <span class="mb-5 cardplan">Current Plan Details</span>&nbsp;
+                    <span class="badge cancel-badge">Cancelled</span>
                 </span>
             </div>
             {% else %}
-            <div class="container d-flex justify-content-between">
+            <div class="container containervp d-flex justify-content-between">
                 <span>
-                    <span class="mb-5 display-6 font-weight-bold">Current Plan Details</span>
-                    <span class="badge bg-muted text-primary">ACTIVE</span>
+                    <span class="mb-5 cardplan">Current Plan Details</span>
+                    <span class="badge bg-mine text-primary "><b>Active</b></span>
                 </span>
                 <span>
-                    <a href="/cancelSub"><button class="btn btn-danger">Cancel</button></a>
+                    <a href="/cancelSub"><button style="text-align: right;" class="mt-1 btn cancelbtn">Cancel</button></a>
                 </span>
             </div>
             {% endif %}
             <div class="mt-4">
-                <p>{{subscription.plan.plan_type.name}}</p>
+                <p class="greytext plan">{{subscription.plan.plan_type.name}}</p>
                 {% for device in subscription.plan.devices.all %}
                 {% if forloop.last %}
-                    <span class="text-muted">{{device}}</span>
+                    <span class="text-muted lgrey">{{device}}</span>
                 {% else %}
-                    <span class="text-muted">{{device}}</span>+
+                    <span class="text-muted lgrey">{{device}}</span><span class="lgrey">+</span>
                 {% endif %}
                 {% endfor %}
             </div>  
-            <div>
+            <div class="mt-2">
                 {% if monthly == "monthly" %}
-                    <h1>₹{{subscription.plan.monthly_price}}/mo</h1>
+                    <h1>₹ {{subscription.plan.monthly_price|intcomma}}/mo</h1>
                 {% else %}
-                    <h1>₹{{subscription.plan.yearly_price}}/yr</h1>
+                    <h1>₹ {{subscription.plan.yearly_price|intcomma}}/yr</h1>
                 {% endif %}               
             </div>
             <div>
                 {% if subscription.cancelled %}
-                    <a href="/"><button class="btn mt-4 shadow text-white secondary_font_color" >Choose Plan</button></a>
+                    <a href="/"><button class="btn mt-3 text-white secondary_font_color hollowbtn" >Choose Plan</button></a>
                 {% else %}
-                    <a href="/"><button class="btn mt-4 shadow text-white secondary_font_color">Change Plan</button></a>
+                    <a href="/"><button class="btn mt-3 text-white secondary_font_color hollowbtn">Change Plan</button></a>
                 {% endif %}
             </div>
-            <div class="bg-light p-3 mt-4 font-weight-bold">
+            <div class="planstatement mt-3 mb-4 font-weight-bold">
                 {% if subscription.cancelled %}
-                    Your Subscription was cancelled and you will loose access on {{subscription.expiration_date}}
+                    Your Subscription was cancelled and you will loose access to services on <b>{{exp_date.month}} {{exp_date.day}}{{exp_date.suffix}}, {{exp_date.year}}</b>.
                 {% else %}
-                    Your subscription has started on {{subscription.subscription_date}} and will renew on {{subscription.expiration_date}}
+                    Your subscription has started on <b>{{sub_date.month}} {{sub_date.day}}{{sub_date.suffix}}, {{sub_date.year}}</b> and will auto renew on <b>{{exp_date.month}} {{exp_date.day}}{{exp_date.suffix}}, {{exp_date.year}}</b>.
                 {% endif %}
             </div>
         </div>
