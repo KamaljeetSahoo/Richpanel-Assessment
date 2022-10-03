@@ -21,8 +21,52 @@ body {
 .font-weight-500 {
     font-weight: 500;
 }
+.cancelbtn{
+    font-weight: 500;
+    color:rgb(31, 76, 145) ;
 
+}
+.cardplan{
+    font-size:x-large;
+    font-weight: 600;
+}
+.bg-mine{
+    background-color:rgb(194, 220, 252);
+    font-weight: 500;
+    font-size: 15px;
+    color:rgb(31, 76, 145)!important;
+    
+}
+.cancel-badge{
+    color: rgb(229,121,118)!important;
+    background-color: rgb(244,204,202);
+}
+.hollowbtn{
+    width: 150px;
+    border-color: rgb(31, 76, 145);
+    border-width: 2px;
+    
+}
+.greytext{
+    color: rgb(86,85,85)!important;
+    
+}
+.lgrey{
+    color:rgb(174,174,175)!important;
+}
+.plan
+{
+    font-weight: 500;
+    margin-bottom: 2px;
 
+}
+.planstatement{
+    border-top-width: 4px;
+    background-color: rgb(214,214,214)!important;
+    padding-left: 10px;
+    color: rgb(86,85,85);
+    font-weight: 480;
+}
 .StripeElement {
     box-sizing: border-box;
     
@@ -50,3 +94,22 @@ body {
     .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
     }
+
+.containervp{
+    padding-left: 0px;
+    padding-top: 15px;
+}
+
+
+
+
+
+
+.arrow-down {
+    width: 0; 
+    height: 0; 
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    
+    border-top: 20px solid #f00!important;
+}
