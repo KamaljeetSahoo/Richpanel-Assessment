@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block body_content %}
+{% load humanize %}
 <div class="container h-100">
   <div class="row my-auto h-100">
     <div
@@ -59,11 +60,11 @@
             <span style="text-align: left">Plan Price</span>
             {% if monthly == "monthly" %}
             <span style="text-align: right; font-weight: 700"
-              >₹ {{price}}/mo</span
+              >₹ {{price|intcomma}}/mo</span
             >
             {% else %}
             <span style="text-align: right; font-weight: 700"
-              >₹ {{price}}/yr</span
+              >₹ {{price|intcomma}}/yr</span
             >
             {%endif%}
           </div>
