@@ -24,13 +24,7 @@
             {% endif %}
             <div class="mt-4">
                 <p class="greytext plan">{{subscription.plan.plan_type.name}}</p>
-                {% for device in subscription.plan.devices.all %}
-                {% if forloop.last %}
-                    <span class="text-muted lgrey">{{device}}</span>
-                {% else %}
-                    <span class="text-muted lgrey">{{device}}</span><span class="lgrey">+</span>
-                {% endif %}
-                {% endfor %}
+                {% for device in subscription.plan.devices.all %}{% if forloop.last %}<span class="text-muted lgrey">{{device}}</span>{% else %}<span class="text-muted lgrey">{{device}}</span><span class="lgrey">+</span>{% endif %}{% endfor %}
             </div>  
             <div class="mt-2">
                 {% if monthly == "monthly" %}
